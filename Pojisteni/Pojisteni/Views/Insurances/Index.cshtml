@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Pojisteni.Models.Insurance>
+
+@{
+    ViewData["Title"] = "Pojištění";
+}
+
+<h1>Seznam pojištění</h1>
+@if (User.IsInRole("admin"))
+{
+    <div class="text-center">
+        <a class="btn btn-primary btn-lg" asp-action="Create">Nové Pojištění</a>
+    </div>
+}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InsuranceName.nazevPojisteni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Castka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.predmetPojisteni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.platnostOd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.platnostDo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person.celeJmeno)
+            </th>
+            @if (User.IsInRole("admin"))
+            {
+                <th></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                  <a asp-action="Details" asp-route-id="@item.InsuranceId">@Html.DisplayFor(modelItem => item.InsuranceName.nazevPojisteni)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Castka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.predmetPojisteni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.platnostOd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.platnostDo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.celeJmeno)
+            </td>
+                @if (User.IsInRole("admin"))
+                {
+            <td> 
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.InsuranceId">Odstranit</a>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.InsuranceId">Editovat</a>                
+            </td>
+                }
+        </tr>
+}
+    </tbody>
+</table>

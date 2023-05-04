@@ -1,0 +1,89 @@
+﻿@model Pojisteni.Models.Person
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+
+
+<div>
+
+    <img class="avatar" src="~/Images/avatar.png" alt="Avatar" />
+    <dl class="row">
+        <dd class="col fw-bold h2">
+            @Html.DisplayFor(model => model.jmenoPojistence) @Html.DisplayFor(model => model.prijmeniPojistence)
+        </dd>
+        <dd class="w-100">
+        </dd>
+        <dd class="col">
+            @Html.DisplayFor(model => model.Ulice)
+        </dd>
+
+        <dd class="col">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dd class="w-100">
+        </dd>
+        <dd class="col">
+            @Html.DisplayFor(model => model.Mesto)
+        </dd>
+
+        <dd class="col">
+            @Html.DisplayFor(model => model.Telefon)
+        </dd>
+        <dd class="w-100">
+        </dd>
+
+        <dd class="col">
+            @Html.DisplayFor(model => model.PSC)
+        </dd>
+    </dl>
+</div>
+
+<hr />
+<h2 class="col fw-bold h3">Sjednaná pojištění</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Insurances[0].InsuranceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Insurances[0].Castka)
+            </th>   
+            @if (User.IsInRole("admin"))
+            {
+                <th></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Insurances)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Insurances" asp-action="Details" asp-route-id="@item.InsuranceId">@Html.DisplayFor(modelItem => item.InsuranceName.nazevPojisteni)</a>
+                </td>              
+                <td>
+                    @Html.DisplayFor(modelItem => item.Castka)
+                </td>
+                @if (User.IsInRole("admin"))
+                {
+                    <td>
+                        <a class="btn btn-danger" asp-controller="Insurances" asp-action="Delete" asp-route-id="@item.InsuranceId">Odstranit</a>
+                    <a class="btn btn-warning" asp-controller="Insurances" asp-action="Edit" asp-route-id="@item.InsuranceId">Editovat</a>                  
+                </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+@if (User.IsInRole("admin")){
+<div class="text-center">
+
+    <a class="btn btn-primary" asp-controller="insurances" asp-action="Create" asp-route-id="@Model?.PersonId">Přidat pojištění</a>
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.PersonId">Editovat pojištěnce</a>
+    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model?.PersonId">Odstranit pojištěnce</a>
+</div>
+}

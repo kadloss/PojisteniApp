@@ -1,0 +1,25 @@
+﻿@model Pojisteni.Models.InsuranceName
+
+@{
+    ViewData["Title"] = "Odstranit pojištění";
+}
+
+<h1>Odstranit pojištění</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nazevPojisteni)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nazevPojisteni)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="InsuranceNameId" />
+        <input type="submit" value="Odstranit pojištění" class="btn btn-danger" /> 
+        <a class="btn btn-primary" asp-action="Index">Zpět</a>
+    </form>
+</div>

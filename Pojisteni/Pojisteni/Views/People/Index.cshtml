@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Pojisteni.Models.Person>
+
+@{
+	ViewData["Title"] = "Pojištěnci";
+}
+<br />
+
+<h1>Pojištěnci</h1>
+
+	<div class="text-center">
+		<a class="btn btn-primary btn-lg" asp-action="Create">Nový Pojištěnec</a>
+	</div>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>
+				Jméno
+			</th>
+			<th>
+				Bydliště
+			</th>
+			@if (User.IsInRole("admin"))
+			{
+				<th></th>
+			}
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					<a asp-action="Details" asp-route-id="@item.PersonId">@Html.DisplayFor(modelItem => item.celeJmeno)</a>
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Adresa)
+				</td>
+				@if (User.IsInRole("admin"))
+				{
+					<td>
+
+					<a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.PersonId">Odstranit</a>
+					<a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.PersonId">Editovat</a>
+				</td>
+				}
+			</tr>
+		}
+	</tbody>
+</table>

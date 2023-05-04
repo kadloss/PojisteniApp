@@ -1,0 +1,53 @@
+﻿@model Pojisteni.Models.Person
+
+@{
+    ViewData["Title"] = "Nový pojištěnec";
+}
+
+<h1>@ViewData["Title"]</h1>    
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-6 col-sm-3">
+                <label asp-for="jmenoPojistence" class="control-label"></label>
+                <input asp-for="jmenoPojistence" class="form-control" />
+                <span asp-validation-for="jmenoPojistence" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-sm-3">
+                <label asp-for="prijmeniPojistence" class="control-label"></label>
+                <input asp-for="prijmeniPojistence" class="form-control" />
+                <span asp-validation-for="prijmeniPojistence" class="text-danger"></span>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-6 col-sm-3">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-sm-3">
+                <label asp-for="Telefon" class="control-label"></label>
+                <input asp-for="Telefon" class="form-control" />
+                <span asp-validation-for="Telefon" class="text-danger"></span>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-6 col-sm-3">
+                <label asp-for="Ulice" class="control-label"></label>
+                <input asp-for="Ulice" class="form-control" />
+                <span asp-validation-for="Ulice" class="text-danger"></span>
+            </div>
+            <div class="col-6 col-sm-3">
+                <label asp-for="Mesto" class="control-label"></label>
+                <input asp-for="Mesto" class="form-control" />
+                <span asp-validation-for="Mesto" class="text-danger"></span>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-3 offset-3">
+                <label asp-for="PSC" class="control-label"></label>
+                <input asp-for="PSC" class="form-control" />
+                <span asp-validation-for="PSC" class="text-danger"></span>
+            </div>
+            <div class="offset-3">
+                <input type="submit" value="Uložit" class="btn btn-primary tlacitko" />
+            </div>
+            </div>
+    </form>    
